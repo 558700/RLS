@@ -30,9 +30,7 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 if (process.env.NODE_ENV === 'testing') {
-	var user = process.env.MONGOLAB_USER
-		, password = process.env.MONGOLAB_PW
-	mongoose.connect('mongodb://'+ user +':'+ password +'@ds039281.mongolab.com:39281/rls');
+	mongoose.connect(process.env.MONGOLAB_URI);
 } else {
 	mongoose.connect('mongodb://localhost/rls');
 }
