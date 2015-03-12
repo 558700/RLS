@@ -1,15 +1,13 @@
 <h1>Home</h1>
 
 {{#if user}}
-	Hello {{ user.organisation }}
+	Logged in as {{ user.organisation }}
 {{ else }}
 	<a href="/login">Login</a>
 {{/if}}
-<hr>
-
-<pre>{{accounts}}</pre>
 
 <hr>
+<div>
 {{#each releases}}
 	{{ title }}
 	{{ datePublished }}
@@ -22,3 +20,4 @@
 	<a href="{{ URL }}">{{ URL }}</a>
 	<hr>
 {{/each}}
+</div>

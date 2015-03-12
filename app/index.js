@@ -90,7 +90,8 @@ app.get('/', function (req, res) {
 	],
 	function(err, results){
 		res.render('index',{
-			releases: results[0]
+			title: 'Home'
+			, releases: results[0]
 			, accounts: results[1]
 		})
 	});
@@ -167,9 +168,12 @@ app.route('/releases')
 
 app.route('/submit')
 	// .all(function(req, res, next) {
+	// auth
 	// })
 	.get(function(req, res, next) {
-		res.render('releases/new')
+		res.render('releases/new', {
+			title: 'Submit'
+		})
 	})
 	.post(function(req, res, next) {
 		res.json(req.body)
