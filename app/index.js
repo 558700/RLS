@@ -21,14 +21,22 @@ hbs.localsAsTemplateData(app);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({ keys: ['secretkey1', 'secretkey2', '...']}));
+app.use(session({ keys: ['secretkey1', 'secretkey2', '...']})); // <- Should totally change these...
 app.use(passport.initialize());
 app.use(passport.session());
 var Account = require('./models/account');
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
-mongoose.connect('mongodb://localhost/rls');
+
+if (process.env.NODE_ENV === 'testing') {
+	var user = process.env.MONGOLAB_USER
+		, password = process.env.MONGOLAB_PW
+	mongoose.connect('mongodb://'+ user +':'+ password +'@ds039281.mongolab.com:39281/rls');
+} else {
+	mongoose.connect('mongodb://localhost/rls');
+}
+
 app.use(function(req, res, next){
     res.locals.session = req.session
     res.locals.user = req.user
