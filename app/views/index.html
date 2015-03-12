@@ -1,0 +1,24 @@
+<h1>Home</h1>
+
+{{#if user}}
+	Hello {{ user.organisation }}
+{{ else }}
+	<a href="/login">Login</a>
+{{/if}}
+<hr>
+
+<pre>{{accounts}}</pre>
+
+<hr>
+{{#each releases}}
+	{{ title }}
+	{{ datePublished }}
+	<!--
+	momentjs helper
+	if under a day, show hours
+	if over, show date
+	-->
+	<br>
+	<a href="{{ URL }}">{{ URL }}</a>
+	<hr>
+{{/each}}

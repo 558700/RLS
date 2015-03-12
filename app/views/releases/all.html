@@ -1,0 +1,14 @@
+Releases List
+
+{{#each releases}}
+	{{ title }}
+	{{ datePublished }}
+	<!--
+	momentjs helper
+	if under a day, show hours
+	if over, show date
+	-->
+	<br>
+	<a href="{{ URL }}">{{ URL }}</a>
+	<hr>
+{{/each}}
