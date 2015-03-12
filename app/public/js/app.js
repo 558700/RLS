@@ -37,8 +37,6 @@ for (var i = 0; i < navAuthLinks.length; i++) {
 modals = document.getElementsByClassName('modal')
 for (var i = 0; i < modals.length; i++) {
 	modals[i].addEventListener('click', function(e){
-		console.log('click')
-		e.preventDefault()
 		if (e.target.classList.contains('modal')) {
 			modal.close(this)
 		}
